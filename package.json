@@ -1,25 +1,16 @@
 {
-  "name": "gv-pathshala-client",
+  "name": "gv-pathshala",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
+  "description": "GV Pathshala: a learning management system with an AI tutor, quiz and feedback generator, learning analyzer and course recommendations",
+  "workspaces": ["server", "client"],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@tanstack/react-query": "^5.56.2",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2"
-  },
-  "devDependencies": {
-    "@types/react": "^18.3.9",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.2",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.8"
+    "db:up": "docker compose up -d db",
+    "db:setup": "npm -w server run db:push && npm -w server run db:seed",
+    "dev:server": "npm -w server run dev",
+    "dev:client": "npm -w client run dev",
+    "test": "npm -w server run test",
+    "typecheck": "npm -w server run typecheck && npm -w client run typecheck",
+    "build": "npm -w server run build && npm -w client run build"
   }
 }
